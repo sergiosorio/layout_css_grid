@@ -17,6 +17,11 @@ body{
     grid-gap:20px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(4, auto);
+
+    grid-template-areas: "header header header"
+                        "contenido contenido sidebar"
+                        "widget-1 widget-2 sidebar"
+                        "footer footer footer";
 }
 
 .contenedor  > div,/*se usa el > para no definir cada una de las clases*/
@@ -32,13 +37,15 @@ body{
 .contenedor .header{
     background: #12203e;
     color:#fff;/*color del texto*/
+    grid-area: header;
     /*se puede usar tambien la propiedad grid-column: 1 / -1;*/
-    grid-column-start: 1;/*inicio del items header*/
-    grid-column-end: -1;/*fin del items header*/
+    /*grid-column-start: 1;/*inicio del items header*/
+    /*grid-column-end: -1;/*fin del items header*/
 }
 
 .contenedor .contenido{
-    grid-column: span 2;/*contenido se expandira 2 espacios*/
+    grid-area: contenido;
+    /*grid-column: span 2;/*contenido se expandira 2 espacios*/
 }
 
 .contenedor .sidebar{
@@ -49,7 +56,8 @@ body{
     align-items: center;/*centra el texto verticalmente*/
     justify-content: center;/*centra el texto de forma horizontal*/
     min-height: 100px;
-    grid-row: span 2; /*tambien podemos usar 2 / 4;*/
+    grid-area: sidebar;
+    /*grid-row: span 2; /*tambien podemos usar 2 / 4;*/
 }
 
 .contenedor .widget-1,
@@ -63,14 +71,35 @@ body{
     justify-content: center;
 }
 
+.contenedor .widget-1{
+    grid-area: widget-1;
+}
+
+.contenedor .widget-2{
+    grid-area: widget-2;
+}
+
 .contenedor .footer{
     background: #12303f;
     color: #fff;
     min-height: 50px;
-    grid-column: span 3;
+    grid-area: footer;
+    /*grid-column: span 3;*/
+}
+
+@media screen and (max-width: 768px) {
+    .contenedor{
+        grid-template-areas: "header header header"
+                        "contenido contenido contenido"
+                        "sidebar sidebar sidebar"
+                        "widget-1 widget-1 widget-2"
+                        "footer footer footer";
+    }
+    
+    
 }
 /*adaptar a dispositivos*/
-@media screen and (max-width: 768px){
+/*@media screen and (max-width: 768px){
     .contenedor .contenido{
         grid-column: 1 / -1;
     }
@@ -83,4 +112,4 @@ body{
         grid-column: span 2;
     }
 
-}
+}*/
